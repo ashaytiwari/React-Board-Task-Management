@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styles from "./Header.module.scss";
 import Logo from "../../assets/images/logo.png";
 import { IconButton, Tooltip } from "@mui/material";
-import ContentPasteIcon from "@mui/icons-material/ContentPaste";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import AddUpdateTaskModal from "../AddUpdateTaskModal/AddUpdateTaskModal";
 

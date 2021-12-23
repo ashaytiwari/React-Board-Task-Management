@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { DialogTitle, Dialog, IconButton } from "@mui/material";
+import { Dialog, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import styles from "./AddUpdateTaskModal.module.scss";
 import InputField from "../UI/InputField/InputField";
@@ -21,6 +21,7 @@ const AddUpdateTaskModal = (props) => {
       setTitle(props.task.content);
       setDescription(props.task.data);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSubmitData = () => {
