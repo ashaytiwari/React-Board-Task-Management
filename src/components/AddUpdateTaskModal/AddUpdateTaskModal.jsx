@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { DialogTitle, Dialog, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import styles from "./Modal.module.scss";
-import InputField from "../InputField/InputField";
-import Textarea from "../Textarea/Textarea";
-import Button from "../Button/Button";
+import styles from "./AddUpdateTaskModal.module.scss";
+import InputField from "../UI/InputField/InputField";
+import Textarea from "../UI/Textarea/Textarea";
+import Button from "../UI/Button/Button";
 import { useSelector, useDispatch } from "react-redux";
-import { addUpdateBoardData } from "../../../redux/actions/board.action";
+import { addUpdateBoardData } from "../../redux/actions/board.action";
 
-const Modal = (props) => {
+const AddUpdateTaskModal = (props) => {
   const dispatch = useDispatch();
 
   const [title, setTitle] = useState("");
@@ -17,21 +17,37 @@ const Modal = (props) => {
   const dataSet = useSelector((state) => state.board.dataSet);
 
   useEffect(() => {
-    setTitle(props.task.content);
-    setDescription(props.task.data);
+    if (props.actionType === "edit") {
+      setTitle(props.task.content);
+      setDescription(props.task.data);
+    }
   }, []);
 
   const handleSubmitData = () => {
     const dummyData = { ...dataSet };
-    const newObject = {
-      id: props.task.id,
-      content: title,
-      data: description
-    };
-    dummyData.tasks[props.task.id] = newObject;
-    dispatch(addUpdateBoardData(dummyData));
-    props.onClose();
-    alert("Data updated successfully");
+    if (props.actionType === "edit") {
+      const newObject = {
+        id: props.task.id,
+        content: title,
+        data: description
+      };
+      dummyData.tasks[props.task.id] = newObject;
+      dispatch(addUpdateBoardData(dummyData));
+      props.onClose();
+      alert("Data updated successfully");
+    } else {
+      const newTaskId = Object.keys(dummyData.tasks).length + 1;
+      const newObject = {
+        id: `task-${newTaskId}`,
+        content: title,
+        data: description
+      };
+      dummyData.tasks[`task-${newTaskId}`] = newObject;
+      dummyData.columns["column-1"].taskIds.push(`task-${newTaskId}`);
+      dispatch(addUpdateBoardData(dummyData));
+      props.onClose();
+      alert("Data added successfully");
+    }
   };
 
   return (
@@ -42,12 +58,12 @@ const Modal = (props) => {
       onClose={props.onClose}
       className={styles.dialog}
     >
-      <DialogTitle className={styles.dialogTitle}>
-        <h3>Edit Task</h3>
+      <div className={styles.dialogTitle}>
+        <h3>{props.actionType === "edit" ? "Edit Task" : "Add Task"} </h3>
         <IconButton className={styles.closeBtn} onClick={props.onClose}>
           <CloseIcon fontSize="small" />
         </IconButton>
-      </DialogTitle>
+      </div>
       <div className={styles.dialogBody}>
         <div className={styles.formGroup}>
           <label>Title*</label>
@@ -80,4 +96,4 @@ const Modal = (props) => {
   );
 };
 
-export default Modal;
+export default AddUpdateTaskModal;

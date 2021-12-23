@@ -9,7 +9,7 @@ const Textarea = (props) => {
       onChange={props.onChange}
       name={props.name}
       id={props.id}
-      autoComplete={false}
+      autoComplete={"off"}
       type={props.type}
       rows={props.row}
       placeholder={props.placeholder}

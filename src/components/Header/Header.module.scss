@@ -1,0 +1,32 @@
+.header {
+  background-color: var(--secondary);
+  padding: 10px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .section {
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 70px;
+      height: 70px;
+      margin-right: 20px;
+    }
+
+    h4 {
+      color: var(--text);
+      font-size: 27px;
+      margin: 0;
+    }
+  }
+
+  .iconBtn {
+    margin-left: 20px;
+    .menuIcon {
+      font-size: 34px;
+      color: var(--text);
+    }
+  }
+}

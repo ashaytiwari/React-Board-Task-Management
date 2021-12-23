@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import styles from "./BoardPage.module.scss";
-// import dataset from "../../assets/data/dataSet";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import CategoryColumn from "../../components/CategoryColumn/CategoryColumn";
 import { Grid } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { addUpdateBoardData } from "../../redux/actions/board.action";
+import Header from "../../components/Header/Header";
 
 const BoardPage = () => {
   const dataSet = useSelector((state) => state.board.dataSet);
@@ -96,36 +96,39 @@ const BoardPage = () => {
 
   return (
     <div className={styles.boardWrapper}>
-      <DragDropContext onDragEnd={onDragEnd}>
-        <Droppable
-          droppableId="all-columns"
-          direction="horizontal"
-          type="column"
-        >
-          {(provided) => (
-            <div {...provided.droppableProps} ref={provided.innerRef}>
-              <Grid container>
-                {data.columnOrder.map((id, index) => {
-                  const column = data.columns[id];
-                  const tasks = column.taskIds.map(
-                    (taskId) => data.tasks[taskId]
-                  );
+      <Header />
+      <div className={styles.body}>
+        <DragDropContext onDragEnd={onDragEnd}>
+          <Droppable
+            droppableId="all-columns"
+            direction="horizontal"
+            type="column"
+          >
+            {(provided) => (
+              <div {...provided.droppableProps} ref={provided.innerRef}>
+                <Grid container>
+                  {data.columnOrder.map((id, index) => {
+                    const column = data.columns[id];
+                    const tasks = column.taskIds.map(
+                      (taskId) => data.tasks[taskId]
+                    );
 
-                  return (
-                    <CategoryColumn
-                      key={column.id}
-                      column={column}
-                      tasks={tasks}
-                      index={index}
-                    />
-                  );
-                })}
-                {provided.placeholder}
-              </Grid>
-            </div>
-          )}
-        </Droppable>
-      </DragDropContext>
+                    return (
+                      <CategoryColumn
+                        key={column.id}
+                        column={column}
+                        tasks={tasks}
+                        index={index}
+                      />
+                    );
+                  })}
+                  {provided.placeholder}
+                </Grid>
+              </div>
+            )}
+          </Droppable>
+        </DragDropContext>
+      </div>
     </div>
   );
 };

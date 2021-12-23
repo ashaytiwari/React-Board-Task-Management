@@ -3,7 +3,7 @@ import { Draggable } from "react-beautiful-dnd";
 import styles from "./TaskCard.module.scss";
 import { IconButton } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
-import Modal from "../UI/Modal/Modal";
+import AddUpdateTaskModal from "../AddUpdateTaskModal/AddUpdateTaskModal";
 
 const TaskCard = (props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -31,11 +31,12 @@ const TaskCard = (props) => {
           </div>
           <p>{props.task.data}</p>
           {isModalOpen && (
-            <Modal
+            <AddUpdateTaskModal
               open={isModalOpen}
               onClose={handleModalOpen}
-              width="sm"
+              width="xs"
               task={props.task}
+              actionType={"edit"}
             />
           )}
         </div>
