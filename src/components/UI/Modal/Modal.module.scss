@@ -1,0 +1,28 @@
+.dialog {
+  .dialogTitle {
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .closeBtn {
+      background-color: rgb(211, 211, 211);
+      padding: 3px;
+    }
+  }
+
+  .dialogBody {
+    padding: 10px 20px;
+
+    .formGroup {
+      label {
+        color: #707070;
+        font-size: 17px;
+        margin-bottom: 10px;
+      }
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 25px;
+    }
+  }
+}
