@@ -1,0 +1,24 @@
+.container {
+  margin: 8px;
+  border: 1px solid lightgrey;
+  border-radius: 2px;
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  background-color: crimson;
+
+  .header {
+    padding: 10px 6px;
+    background-color: cyan;
+
+    h4 {
+      color: darkblue;
+    }
+  }
+
+  .taskList {
+    padding: 8px;
+    background-color: crimson;
+    min-height: 100px;
+  }
+}
