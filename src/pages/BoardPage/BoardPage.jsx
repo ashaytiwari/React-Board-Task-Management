@@ -98,36 +98,38 @@ const BoardPage = () => {
     <div className={styles.boardWrapper}>
       <Header />
       <div className={styles.body}>
-        <DragDropContext onDragEnd={onDragEnd}>
-          <Droppable
-            droppableId="all-columns"
-            direction="horizontal"
-            type="column"
-          >
-            {(provided) => (
-              <div {...provided.droppableProps} ref={provided.innerRef}>
-                <Grid container>
-                  {data.columnOrder.map((id, index) => {
-                    const column = data.columns[id];
-                    const tasks = column.taskIds.map(
-                      (taskId) => data.tasks[taskId]
-                    );
+        <div className={styles.bodyWrapper}>
+          <DragDropContext onDragEnd={onDragEnd}>
+            <Droppable
+              droppableId="all-columns"
+              direction="horizontal"
+              type="column"
+            >
+              {(provided) => (
+                <div {...provided.droppableProps} ref={provided.innerRef}>
+                  <Grid container>
+                    {data.columnOrder.map((id, index) => {
+                      const column = data.columns[id];
+                      const tasks = column.taskIds.map(
+                        (taskId) => data.tasks[taskId]
+                      );
 
-                    return (
-                      <CategoryColumn
-                        key={column.id}
-                        column={column}
-                        tasks={tasks}
-                        index={index}
-                      />
-                    );
-                  })}
-                  {provided.placeholder}
-                </Grid>
-              </div>
-            )}
-          </Droppable>
-        </DragDropContext>
+                      return (
+                        <CategoryColumn
+                          key={column.id}
+                          column={column}
+                          tasks={tasks}
+                          index={index}
+                        />
+                      );
+                    })}
+                    {provided.placeholder}
+                  </Grid>
+                </div>
+              )}
+            </Droppable>
+          </DragDropContext>
+        </div>
       </div>
     </div>
   );

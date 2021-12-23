@@ -10,9 +10,7 @@ const CategoryColumn = (props) => {
       {(provided) => (
         <Grid
           item
-          lg={3}
-          md={6}
-          sm={12}
+          xs={3}
           ref={provided.innerRef}
           {...provided.draggableProps}
           className={styles.gridSection}
