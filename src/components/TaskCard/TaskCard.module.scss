@@ -4,4 +4,16 @@
   margin-bottom: 8px;
   border-radius: 2px;
   background-color: yellow;
+
+  .cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .editBtn {
+      background-color: yellowgreen;
+      padding: 5px;
+      color: var(--primary);
+    }
+  }
 }

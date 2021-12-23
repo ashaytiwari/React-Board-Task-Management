@@ -1,9 +1,25 @@
 const dataset = {
   tasks: {
-    "task-1": { id: "task-1", content: "Content for task 1" },
-    "task-2": { id: "task-2", content: "Content for task-2" },
-    "task-3": { id: "task-3", content: "Content for task-3" },
-    "task-4": { id: "task-4", content: "Content for task-4" }
+    "task-1": {
+      id: "task-1",
+      content: "Content for task 1",
+      data: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
+    },
+    "task-2": {
+      id: "task-2",
+      content: "Content for task-2",
+      data: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
+    },
+    "task-3": {
+      id: "task-3",
+      content: "Content for task-3",
+      data: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
+    },
+    "task-4": {
+      id: "task-4",
+      content: "Content for task-4",
+      data: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
+    }
   },
   columns: {
     "column-1": { id: "column-1", title: "Todo", taskIds: ["task-1"] },

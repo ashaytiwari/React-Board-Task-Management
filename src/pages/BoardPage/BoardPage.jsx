@@ -1,11 +1,17 @@
 import React, { useState } from "react";
 import styles from "./BoardPage.module.scss";
-import dataset from "../../assets/data/dataSet";
+// import dataset from "../../assets/data/dataSet";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import CategoryColumn from "../../components/CategoryColumn/CategoryColumn";
+import { Grid } from "@mui/material";
+import { useSelector, useDispatch } from "react-redux";
+import { addUpdateBoardData } from "../../redux/actions/board.action";
 
 const BoardPage = () => {
-  const [data, setData] = useState(dataset);
+  const dataSet = useSelector((state) => state.board.dataSet);
+  const dispatch = useDispatch();
+
+  const [data, setData] = useState(dataSet);
 
   const onDragEnd = (result) => {
     const { destination, source, draggableId, type } = result;
@@ -31,6 +37,7 @@ const BoardPage = () => {
         ...data,
         columnOrder: newColumnOrder
       };
+      dispatch(addUpdateBoardData(newState));
       setData(newState);
       return;
     }
@@ -55,6 +62,7 @@ const BoardPage = () => {
           [newColumn.id]: newColumn
         }
       };
+      dispatch(addUpdateBoardData(newState));
       setData(newState);
       return;
     }
@@ -82,7 +90,7 @@ const BoardPage = () => {
         [newFinish.id]: newFinish
       }
     };
-
+    dispatch(addUpdateBoardData(newState));
     setData(newState);
   };
 
@@ -95,27 +103,25 @@ const BoardPage = () => {
           type="column"
         >
           {(provided) => (
-            <div
-              className={styles.body}
-              {...provided.droppableProps}
-              ref={provided.innerRef}
-            >
-              {data.columnOrder.map((id, index) => {
-                const column = data.columns[id];
-                const tasks = column.taskIds.map(
-                  (taskId) => data.tasks[taskId]
-                );
+            <div {...provided.droppableProps} ref={provided.innerRef}>
+              <Grid container>
+                {data.columnOrder.map((id, index) => {
+                  const column = data.columns[id];
+                  const tasks = column.taskIds.map(
+                    (taskId) => data.tasks[taskId]
+                  );
 
-                return (
-                  <CategoryColumn
-                    key={column.id}
-                    column={column}
-                    tasks={tasks}
-                    index={index}
-                  />
-                );
-              })}
-              {provided.placeholder}
+                  return (
+                    <CategoryColumn
+                      key={column.id}
+                      column={column}
+                      tasks={tasks}
+                      index={index}
+                    />
+                  );
+                })}
+                {provided.placeholder}
+              </Grid>
             </div>
           )}
         </Droppable>
