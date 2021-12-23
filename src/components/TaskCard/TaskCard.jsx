@@ -16,11 +16,12 @@ const TaskCard = (props) => {
     <Draggable draggableId={props.task.id} index={props.index}>
       {(provided, snapshot) => (
         <div
-          className={styles.taskCard}
+          className={`${snapshot.isDragging && styles.activeCard} ${
+            styles.taskCard
+          }`}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           ref={provided.innerRef}
-          isDragging={snapshot.isDragging}
         >
           <div className={styles.cardHeader}>
             <h2>{props.task.content}</h2>

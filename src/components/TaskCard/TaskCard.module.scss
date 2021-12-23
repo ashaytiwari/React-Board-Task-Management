@@ -1,19 +1,30 @@
 .taskCard {
-  border: 1px solid black;
   padding: 8px;
+  border-radius: 10px !important;
   margin-bottom: 8px;
   border-radius: 2px;
-  background-color: yellow;
+  background-color: var(--background);
 
   .cardHeader {
     display: flex;
     justify-content: space-between;
     align-items: center;
 
+    h2 {
+      color: var(--text);
+      font-size: 18px;
+    }
+
     .editBtn {
-      background-color: yellowgreen;
       padding: 5px;
       color: var(--primary);
     }
   }
+  p {
+    color: var(--grey);
+    font-size: 15px;
+  }
+}
+.activeCard {
+  background-color: var(--success);
 }

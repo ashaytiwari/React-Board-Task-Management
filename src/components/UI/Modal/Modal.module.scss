@@ -4,19 +4,25 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: var(--secondary);
+
+    h3 {
+      color: var(--text);
+    }
 
     .closeBtn {
-      background-color: rgb(211, 211, 211);
       padding: 3px;
+      color: var(--primary);
     }
   }
 
   .dialogBody {
     padding: 10px 20px;
+    background-color: var(--secondary);
 
     .formGroup {
       label {
-        color: #707070;
+        color: var(--text);
         font-size: 17px;
         margin-bottom: 10px;
       }

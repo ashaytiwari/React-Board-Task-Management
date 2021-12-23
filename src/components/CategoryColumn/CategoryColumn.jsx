@@ -24,10 +24,13 @@ const CategoryColumn = (props) => {
             <Droppable droppableId={props.column.id} type="task">
               {(provided, snapshot) => (
                 <div
-                  className={styles.taskList}
+                  className={
+                    snapshot.isDraggingOver
+                      ? styles.draggingTaskList
+                      : styles.taskList
+                  }
                   ref={provided.innerRef}
                   {...provided.droppableProps}
-                  isDraggingOver={snapshot.isDraggingOver}
                 >
                   {props.tasks.map((task, index) => (
                     <TaskCard key={task.id} task={task} index={index} />
