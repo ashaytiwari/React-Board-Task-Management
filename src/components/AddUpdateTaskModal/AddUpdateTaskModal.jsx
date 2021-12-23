@@ -24,30 +24,42 @@ const AddUpdateTaskModal = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const validateForm = () => {
+    if (!title || !description) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   const handleSubmitData = () => {
     const dummyData = { ...dataSet };
-    if (props.actionType === "edit") {
-      const newObject = {
-        id: props.task.id,
-        content: title,
-        data: description
-      };
-      dummyData.tasks[props.task.id] = newObject;
-      dispatch(addUpdateBoardData(dummyData));
-      props.onClose();
-      alert("Data updated successfully");
+    if (validateForm()) {
+      alert("Title and Description fields are mandatory");
     } else {
-      const newTaskId = Object.keys(dummyData.tasks).length + 1;
-      const newObject = {
-        id: `task-${newTaskId}`,
-        content: title,
-        data: description
-      };
-      dummyData.tasks[`task-${newTaskId}`] = newObject;
-      dummyData.columns["column-1"].taskIds.push(`task-${newTaskId}`);
-      dispatch(addUpdateBoardData(dummyData));
-      props.onClose();
-      alert("Data added successfully");
+      if (props.actionType === "edit") {
+        const newObject = {
+          id: props.task.id,
+          content: title,
+          data: description
+        };
+        dummyData.tasks[props.task.id] = newObject;
+        dispatch(addUpdateBoardData(dummyData));
+        props.onClose();
+        alert("Data updated successfully");
+      } else {
+        const newTaskId = Object.keys(dummyData.tasks).length + 1;
+        const newObject = {
+          id: `task-${newTaskId}`,
+          content: title,
+          data: description
+        };
+        dummyData.tasks[`task-${newTaskId}`] = newObject;
+        dummyData.columns["column-1"].taskIds.push(`task-${newTaskId}`);
+        dispatch(addUpdateBoardData(dummyData));
+        props.onClose();
+        alert("Data added successfully");
+      }
     }
   };
 
